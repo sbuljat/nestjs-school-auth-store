@@ -2,7 +2,16 @@
 
 [Nest](https://github.com/nestjs/nest) framework educational project on using [Authentication](https://docs.nestjs.com/security/authentication) and [Authorization](https://docs.nestjs.com/security/authorization).
 
-This project showcases JWT and Guards to support Authentication and Authorization.
+This project showcases JWT and Guards to support Authentication and Authorization, data persisted to Redis.
+
+
+$ npm install ioredis
+$ npm install uuid
+$ npm install cookie-parser
+
+
+
+
 
 ## Installation
 
@@ -35,6 +44,8 @@ $ nest start --watch
 - Register free account (hobby plan) on https://render.com/
 - Create a new Web Service by connecting this public GitHub repository
 - Deploy service & view public URL
+
+- Create Key-Value Service
 
 ## License
 
