@@ -36,18 +36,19 @@ $ nest start --watch
 
 - Go to http://localhost:3000 from browser, you should get HTTP 200 with text response 'Hello World!'.
 - Perform HTTP GET http://localhost:3000/auth/profile from Postman, you should get HTTP 401 response.
-- Perform HTTP POST http://localhost:3000/auth/login with JSON body {"username":"stipe", "password":"password123"} from Postman, you should get HTTP 200 response with access_token.
-- Perform HTTP GET http://localhost:3000/auth/profile using access_token from previous step as Authorization: Bearer {}, you should get HTTP 200 with JSON response.
-- Perform HTTP GET http://localhost:3000/users using access_token from previous step as Authorization: Bearer {}, you should get HTTP 403 response. This is because logged user does not have admin privileges. Re-login using {"username":"jure", "password":"password321"} and retry this endpoint, it should return HTTP 200 with all users in response.
+- Perform HTTP POST http://localhost:3000/auth/login with JSON body `{"username":"stipe", "password":"password123"}` from Postman, you should get HTTP 200 response.
+- Perform HTTP GET http://localhost:3000/auth/profile, you should get HTTP 200 with JSON response.
+- Perform HTTP GET http://localhost:3000/users, you should get HTTP 403 response. This is because logged user does not have admin privileges. Re-login using `{"username":"jure", "password":"password321"}` and retry this endpoint, it should return HTTP 200 with all users in response.
 
 ## Deploying the app
 
 ### Render.com
 
 - Register free account (hobby plan) on https://render.com/
-- Create a new Key Value Service, store connection string to use later
-- Create a new Web Service by connecting this public GitHub repository
-    - Add environment variable REDIS_URL with value from Key Value connection string
+- Create a new **Key Value** service, store connection string to use later
+- Create a new **Web Service** by connecting this public GitHub repository
+    - Add environment variable **REDIS_URL** with value from Key Value connection string
+    - Add environment variable **NODE_ENV** with value *production*
 - Deploy service & view public URL
 
 ## License
