@@ -54,7 +54,7 @@ export class AuthGuard implements CanActivate {
     }
 
 
-    const access_token = request.cookies?.['nestjs-auth'].access_token;
+    const access_token = request.cookies?.['nestjs-auth']?.access_token;
     console.log('AuthGuard.extractToken() => ' + access_token);
 
     return access_token;
