@@ -26,7 +26,7 @@ export class AuthController {
       // Set the cookie with the token
     res.cookie('nestjs-auth', access_token, {
       httpOnly: true, // Prevents client-side scripts from accessing the cookie
-      secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+      secure: process.env.ENV === 'prod', // Use secure cookies in production
       sameSite: 'strict', // Prevents CSRF attacks
       maxAge: 3600000, // Cookie expiration time in milliseconds (e.g., 1 hour)
     });
