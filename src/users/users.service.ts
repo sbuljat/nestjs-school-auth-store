@@ -3,6 +3,7 @@ import { User } from './users.model';
 import { StorageService } from 'src/storage/storage.service';
 import { Role } from 'src/auth/role.enum';
 import { v4 as uuidv4 } from 'uuid';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -51,13 +52,18 @@ export class UsersService {
     return results.map(([, userStr]) => (userStr ? JSON.parse(userStr as string) as User : null));
   }
 
-  // Save or update a user. Maintains both id and email mappings.
+  // Save or update a user. Maintains both id, username and email mappings.
   async saveUser(user: User): Promise<void> {
-    const { id, username, email } = user;
-    await this.storageService.client.set(`user:id:${id}`, JSON.stringify(user));
+    const { id, username, email, password } = user;
+
+    // Hash the password before saving
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Create a new user object with the hashed password
+    const userToSave = { ...user, password: hashedPassword };
+
+    await this.storageService.client.set(`user:id:${id}`, JSON.stringify(userToSave));
     await this.storageService.client.set(`user:email:${email}`, id);
     await this.storageService.client.set(`user:username:${username}`, id);
   }
-
-
 }

@@ -5,18 +5,21 @@
 This project showcases JWT and Guards to support Authentication and Authorization, data persisted to Redis.
 
 
-$ npm install ioredis
-$ npm install uuid
-$ npm install cookie-parser
-
-
-
-
-
 ## Installation
 
 ```bash
 $ npm install
+```
+
+
+### Dependencies
+
+```bash
+$ npm install dotenv
+$ npm install ioredis
+$ npm install uuid
+$ npm install cookie-parser
+$ npm install bcrypt
 ```
 
 ## Running the app
@@ -42,10 +45,10 @@ $ nest start --watch
 ### Render.com
 
 - Register free account (hobby plan) on https://render.com/
+- Create a new Key Value Service, store connection string to use later
 - Create a new Web Service by connecting this public GitHub repository
+    - Add environment variable REDIS_URL with value from Key Value connection string
 - Deploy service & view public URL
-
-- Create Key-Value Service
 
 ## License
 

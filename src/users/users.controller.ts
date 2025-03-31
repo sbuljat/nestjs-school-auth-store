@@ -10,6 +10,7 @@ export class UsersController {
   @Get()
   @Roles(Role.Admin)
   async getAllUsers() {
-    return this.usersService.findAll();
+    const users = await this.usersService.findAll();
+    return users.map(({ password, ...userWithoutPassword }) => userWithoutPassword);
   }
 }
